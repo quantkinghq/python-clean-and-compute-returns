@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 
 
@@ -8,19 +9,10 @@ def load_data(path: str) -> pd.DataFrame:
 def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
 
-    # Convert date
     df["date"] = pd.to_datetime(df["date"], errors="coerce")
-
-    # Drop rows with invalid dates
     df = df.dropna(subset=["date"])
-
-    # Sort
     df = df.sort_values("date")
-
-    # Drop duplicate dates (keep last)
     df = df.drop_duplicates(subset=["date"], keep="last")
-
-    # Fill missing prices
     df["price"] = df["price"].ffill()
 
     return df
@@ -32,12 +24,22 @@ def compute_returns(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def save_output(df: pd.DataFrame, path: str) -> None:
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    df.to_csv(path, index=False)
+
+
 def main():
-    df = load_data("data/raw/prices.csv")
+    input_path = "data/raw/prices.csv"
+    output_path = "data/processed/cleaned_prices_with_returns.csv"
+
+    df = load_data(input_path)
     df = clean_data(df)
     df = compute_returns(df)
+    save_output(df, output_path)
 
     print(df.head())
+    print(f"Saved cleaned dataset to {output_path}")
 
 
 if __name__ == "__main__":
