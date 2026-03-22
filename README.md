@@ -1,7 +1,8 @@
-# python-clean-and-compute-returns
-Quant interview-style project: clean financial data and compute returns using Python libraries
-
 # Clean and Compute Returns
+
+Quant interview-style project: clean financial data and compute returns using Python libraries.
+
+---
 
 ## Overview
 
@@ -76,3 +77,32 @@ Your solution will be assessed on:
 1. Fork this repository
 2. Complete the implementation
 3. Push your solution to your GitHub
+
+---
+
+## Project Structure
+
+data/
+    raw/
+        prices.csv
+    processed/
+        cleaned_prices_with_returns.csv
+
+src/
+    clean_returns.py
+
+requirements.txt
+README.md
+
+---
+
+## How to Run
+
+1. Install dependencies:
+   pip install -r requirements.txt
+
+2. Run the pipeline:
+   python src/clean_returns.py
+
+3. Output will be saved to:
+   data/processed/cleaned_prices_with_returns.csv
