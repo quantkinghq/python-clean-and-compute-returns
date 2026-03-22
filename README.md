@@ -82,19 +82,19 @@ Your solution will be assessed on:
 
 ## Project Structure
 
+```
 data/
-    raw/
-        prices.csv
-    processed/
-        cleaned_prices_with_returns.csv
+  raw/
+    prices.csv
+  processed/
+    cleaned_prices_with_returns.csv
 
 src/
-    clean_returns.py
+  clean_returns.py
 
 requirements.txt
 README.md
-
----
+```
 
 ## How to Run
 
